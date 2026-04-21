@@ -1,0 +1,43 @@
+# =====================================================================
+# Dependencias del Backend YeYo Store
+# =====================================================================
+
+# Framework Web
+fastapi[standard]
+uvicorn[standard]==0.24.0
+
+# ORM y Base de Datos (SQLModel incluye SQLAlchemy)
+sqlmodel==0.0.14
+sqlalchemy>=2.0.49
+
+psycopg2
+
+# Configuración & Variables de Entorno
+pydantic-settings==2.1.0
+python-dotenv==1.0.0
+
+# Utilidades
+python-multipart==0.0.6
+
+# Autenticación & Seguridad
+bcrypt==4.1.1
+pyjwt==2.12.1
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# Validación de emails (futuro)
+email-validator==2.1.0
+
+# CORS
+fastapi-cors==0.0.6
+
+# Desarrollo (opcional)
+pytest==7.4.3
+pytest-asyncio==0.21.1
+httpx==0.25.2
+black==23.12.0
+flake8==6.1.0
+isort==5.13.2
+
+# Docs
+markdown==3.5.1

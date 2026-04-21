@@ -1,0 +1,100 @@
+version: '3.9'
+
+services:
+  # =====================================================================
+  # Backend - FastAPI
+  # =====================================================================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: yeyo-store-backend
+    ports:
+      - "8000:8000"
+    environment:
+      # Database
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
+      # JWT & Security
+      SECRET_KEY: ${SECRET_KEY}
+      ALGORITHM: ${ALGORITHM}
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES}
+      # Environment
+      ENVIRONMENT: ${ENVIRONMENT:-development}
+      DEBUG: ${DEBUG:-true}
+      # CORS
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:5173,http://localhost:3000,http://localhost}
+    depends_on:
+      - postgres  # Comentar si usas Supabase
+    volumes:
+      - ./backend:/app
+    networks:
+      - yeyo-network
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  # =====================================================================
+  # Frontend - React + Nginx
+  # =====================================================================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=${VITE_API_URL:-http://localhost:8000}
+    container_name: yeyo-store-frontend
+    ports:
+      - "80:80"
+    environment:
+      - VITE_API_URL=${VITE_API_URL:-http://localhost:8000}
+    depends_on:
+      - backend
+    networks:
+      - yeyo-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  # =====================================================================
+  # PostgreSQL (SOLO para desarrollo local)
+  # COMENTAR o ELIMINAR cuando uses Supabase en producción
+  # =====================================================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: yeyo-store-postgres
+    environment:
+      POSTGRES_USER: ${DB_USER:-yeyo_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-secure_password_123}
+      POSTGRES_DB: ${DB_NAME:-yeyo_store}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - yeyo-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-yeyo_user}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+# =====================================================================
+# Networks
+# =====================================================================
+networks:
+  yeyo-network:
+    driver: bridge
+
+# =====================================================================
+# Volumes
+# =====================================================================
+volumes:
+  postgres_data:
+    driver: local
