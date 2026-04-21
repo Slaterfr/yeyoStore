@@ -153,8 +153,16 @@ frontend_path = Path(__file__).parent.parent / "frontend"
 
 @app.get("/")
 async def serve_index():
-    """Sirve el index.html en la raíz"""
-    return FileResponse(frontend_path / "index.html")
+    """Sirve el index.html si existe; fallback a estado de API en backend-only deploy."""
+    index_path = frontend_path / "index.html"
+    if index_path.exists():
+        return FileResponse(index_path)
+    return {
+        "status": "ok",
+        "message": "YeYo Store API running",
+        "docs": "/docs",
+    }
 
-# Montar la carpeta frontend para servir archivos estáticos
-app.mount("/", StaticFiles(directory=str(frontend_path), html=True), name="frontend")
+# Montar frontend solo si la carpeta existe (evita crash en Render backend-only)
+if frontend_path.exists():
+    app.mount("/", StaticFiles(directory=str(frontend_path), html=True), name="frontend")
