@@ -8,6 +8,7 @@ const Products = () => {
   const { getAuthHeaders } = useAuth()
   const { agregarAlCarrito } = useCart()
   const { wishlist, agregarAListaDeseos, eliminarDeListaDeseos, estaEnListaDeseos } = useWishlist()
+  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '')
   const [productos, setProductos] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -32,7 +33,7 @@ const Products = () => {
   const cargarFotosProducto = async (productoId) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/productos/${productoId}/fotos`,
+        `${API_BASE}/api/productos/${productoId}/fotos`,
         {
           headers: getAuthHeaders()
         }
@@ -54,7 +55,7 @@ const Products = () => {
     setLoading(true)
     setError('')
     try {
-      let url = 'http://localhost:8000/api/productos'
+      let url = `${API_BASE}/api/productos`
       const params = new URLSearchParams()
 
       if (searchTerm) params.append('q', searchTerm)

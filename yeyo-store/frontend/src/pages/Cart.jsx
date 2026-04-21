@@ -7,6 +7,7 @@ import './Cart.css'
 const Cart = () => {
   const { getAuthHeaders, isAuthenticated, user, loading: authLoading } = useAuth()
   const { carrito, actualizarCantidad, eliminarDelCarrito, vaciarCarrito, calcularTotal } = useCart()
+  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '')
   
   const [usuario, setUsuario] = useState(null)
   const [direcciones, setDirecciones] = useState([])
@@ -27,7 +28,7 @@ const Cart = () => {
         const headers = getAuthHeaders()
         
         // Cargar usuario actual
-        const resUsuario = await fetch('http://localhost:8000/api/usuarios/me', {
+        const resUsuario = await fetch(`${API_BASE}/api/usuarios/me`, {
           headers
         })
         if (!resUsuario.ok) {
@@ -37,7 +38,7 @@ const Cart = () => {
         setUsuario(usuarioData)
 
         // Cargar direcciones del usuario
-        const resDirecciones = await fetch('http://localhost:8000/api/usuarios/me/direcciones', {
+        const resDirecciones = await fetch(`${API_BASE}/api/usuarios/me/direcciones`, {
           headers
         })
         if (!resDirecciones.ok) {
@@ -47,7 +48,7 @@ const Cart = () => {
         setDirecciones(direccionesData)
 
         // Cargar órdenes del usuario
-        const resOrdenes = await fetch('http://localhost:8000/api/ordenes', {
+        const resOrdenes = await fetch(`${API_BASE}/api/ordenes`, {
           headers
         })
         if (resOrdenes.ok) {
@@ -83,7 +84,7 @@ const Cart = () => {
 
     try {
       // Primero, obtener todas las tallas del servidor
-      const resTallas = await fetch('http://localhost:8000/api/tallas', {
+      const resTallas = await fetch(`${API_BASE}/api/tallas`, {
         headers: getAuthHeaders()
       })
       if (!resTallas.ok) {
@@ -116,7 +117,7 @@ const Cart = () => {
         codigo_cupon_aplicado: codigoCupon || undefined
       }
 
-      const response = await fetch('http://localhost:8000/api/ordenes', {
+      const response = await fetch(`${API_BASE}/api/ordenes`, {
         method: 'POST',
         headers: {
           ...getAuthHeaders(),

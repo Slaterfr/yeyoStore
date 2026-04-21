@@ -6,6 +6,7 @@ import './OrderDetail.css'
 const OrderDetail = () => {
   const { id } = useParams()
   const { getAuthHeaders, isAuthenticated } = useAuth()
+  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '')
   const [pedido, setPedido] = useState(null)
   const [direccion, setDireccion] = useState(null)
   const [productoImages, setProductoImages] = useState({})
@@ -62,7 +63,7 @@ const OrderDetail = () => {
     setError('')
     try {
       // Cargar pedido
-      const resPedido = await fetch(`http://localhost:8000/api/ordenes/${id}`, {
+      const resPedido = await fetch(`${API_BASE}/api/ordenes/${id}`, {
         headers: getAuthHeaders()
       })
       if (!resPedido.ok) throw new Error('Pedido no encontrado')
@@ -75,7 +76,7 @@ const OrderDetail = () => {
         for (const detalle of dataPedido.detalles) {
           try {
             const resProducto = await fetch(
-              `http://localhost:8000/api/productos/${detalle.id_producto}`,
+              `${API_BASE}/api/productos/${detalle.id_producto}`,
               { headers: getAuthHeaders() }
             )
             if (resProducto.ok) {
@@ -218,7 +219,7 @@ const OrderDetail = () => {
                 <div className="item-image">
                   {producto?.fotos?.[0]?.ruta_foto_foto ? (
                     <img
-                      src={`http://localhost:8000${producto.fotos[0].ruta_foto_foto}`}
+                      src={`${API_BASE}${producto.fotos[0].ruta_foto_foto}`}
                       alt={producto.nombre_producto}
                       onError={(e) => (e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Crect fill="%23444" width="100" height="100"/%3E%3Ctext x="50" y="50" font-size="20" text-anchor="middle" dominant-baseline="middle" fill="%23999"%3E?%3C/text%3E%3C/svg%3E')}
                     />

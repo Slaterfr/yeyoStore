@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
 
 # Copiar requirements y instalar dependencias Python
 COPY requirements.txt .
-RUN pip install --user --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 # =====================================================================
 # Stage 2: Runtime (imagen final más pequeña)

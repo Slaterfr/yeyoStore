@@ -5,6 +5,7 @@ import './Profile.css'
 
 const Profile = () => {
   const { user, isAuthenticated, getAuthHeaders } = useAuth()
+  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '')
   const [tab, setTab] = useState('datos')
   const [userData, setUserData] = useState(null)
   const [pedidos, setPedidos] = useState([])
@@ -32,7 +33,7 @@ const Profile = () => {
 
   const cargarDatosUsuario = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/usuarios/me', {
+      const response = await fetch(`${API_BASE}/api/usuarios/me`, {
         headers: getAuthHeaders()
       })
       if (response.ok) {
@@ -53,7 +54,7 @@ const Profile = () => {
   const cargarPedidos = async () => {
     setLoading(true)
     try {
-      const response = await fetch('http://localhost:8000/api/ordenes', {
+      const response = await fetch(`${API_BASE}/api/ordenes`, {
         headers: getAuthHeaders()
       })
       if (response.ok) {
@@ -69,7 +70,7 @@ const Profile = () => {
 
   const guardarCambios = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/usuarios/me', {
+      const response = await fetch(`${API_BASE}/api/usuarios/me`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -92,7 +93,7 @@ const Profile = () => {
 
   const cargarDirecciones = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/usuarios/me/direcciones', {
+      const response = await fetch(`${API_BASE}/api/usuarios/me/direcciones`, {
         headers: getAuthHeaders()
       })
       if (response.ok) {
@@ -112,7 +113,7 @@ const Profile = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:8000/api/usuarios/me/direcciones', {
+      const response = await fetch(`${API_BASE}/api/usuarios/me/direcciones`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -142,7 +143,7 @@ const Profile = () => {
   const eliminarDireccion = async (direccionId) => {
     if (window.confirm('¿Estás seguro de que quieres eliminar esta dirección?')) {
       try {
-        const response = await fetch(`http://localhost:8000/api/usuarios/me/direcciones/${direccionId}`, {
+        const response = await fetch(`${API_BASE}/api/usuarios/me/direcciones/${direccionId}`, {
           method: 'DELETE',
           headers: getAuthHeaders()
         })

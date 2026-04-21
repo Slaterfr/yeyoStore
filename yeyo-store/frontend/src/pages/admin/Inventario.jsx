@@ -6,6 +6,7 @@ import './Inventario.css'
 const Inventario = () => {
   const { getAuthHeaders } = useAuth()
   const navigate = useNavigate()
+  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '')
   const [productos, setProductos] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -23,7 +24,7 @@ const Inventario = () => {
     setLoading(true)
     setError('')
     try {
-      const response = await fetch('http://localhost:8000/api/admin/inventario?limit=500', {
+      const response = await fetch(`${API_BASE}/api/admin/inventario?limit=500`, {
         headers: getAuthHeaders()
       })
 
@@ -67,7 +68,7 @@ const Inventario = () => {
     if (!confirm('¿Establecer stock a 0?')) return
 
     try {
-      const response = await fetch(`http://localhost:8000/api/admin/productos/${productoId}/stock?nuevo_stock=0`, {
+      const response = await fetch(`${API_BASE}/api/admin/productos/${productoId}/stock?nuevo_stock=0`, {
         method: 'PATCH',
         headers: getAuthHeaders()
       })

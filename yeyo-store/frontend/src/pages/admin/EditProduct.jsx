@@ -7,6 +7,7 @@ const EditProduct = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const { getAuthHeaders } = useAuth()
+  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '')
 
   const [producto, setProducto] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -33,7 +34,7 @@ const EditProduct = () => {
     setLoading(true)
     setError('')
     try {
-      const response = await fetch(`http://localhost:8000/api/productos/${id}`, {
+      const response = await fetch(`${API_BASE}/api/productos/${id}`, {
         headers: getAuthHeaders()
       })
 
@@ -79,7 +80,7 @@ const EditProduct = () => {
     setError('')
 
     try {
-      const response = await fetch(`http://localhost:8000/api/admin/productos/${id}`, {
+      const response = await fetch(`${API_BASE}/api/admin/productos/${id}`, {
         method: 'PUT',
         headers: getAuthHeaders(),
         body: JSON.stringify({
