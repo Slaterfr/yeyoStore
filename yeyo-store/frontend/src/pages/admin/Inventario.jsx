@@ -6,7 +6,9 @@ import './Inventario.css'
 const Inventario = () => {
   const { getAuthHeaders } = useAuth()
   const navigate = useNavigate()
-  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '')
+  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000')
+    .replace(/\/$/, '')
+    .replace(/\/api$/, '')
   const [productos, setProductos] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')

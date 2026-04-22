@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     # =====================================================================
     # CONFIGURACIÓN DE BASE DE DATOS
     # =====================================================================
-    DATABASE_URL: str = "postgresql://user:password@localhost/yeyo_store"
+    DATABASE_URL: str = ""
     SQLALCHEMY_ECHO: bool = False  # Log SQL queries en desarrollo
 
     # =====================================================================
@@ -75,7 +75,12 @@ settings = Settings()
 
 
 # Validaciones en función del entorno
+if not settings.DATABASE_URL:
+    raise ValueError("❌ ERROR: DATABASE_URL no está configurada. Define DATABASE_URL en variables de entorno.")
+
 if settings.ENVIRONMENT == "production":
+    if "localhost" in settings.DATABASE_URL or "127.0.0.1" in settings.DATABASE_URL:
+        raise ValueError("❌ ERROR: En producción DATABASE_URL no puede apuntar a localhost.")
     assert settings.SECRET_KEY != "your-super-secret-key-change-in-production", \
         "❌ ERROR: Cambiar SECRET_KEY en producción"
     assert not settings.DEBUG, "❌ ERRO R: DEBUG=False requerido en producción"

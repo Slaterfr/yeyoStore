@@ -27,7 +27,9 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '')
+  const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000')
+    .replace(/\/$/, '')
+    .replace(/\/api$/, '')
   const API_BASE = `${API_URL}/api`
 
   // Recuperar token de localStorage al montar el componente

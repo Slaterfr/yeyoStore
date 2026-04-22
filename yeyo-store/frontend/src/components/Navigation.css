@@ -1,6 +1,6 @@
 .navbar {
-  background-color: #1a1a1a;
-  border-bottom: 2px solid #b8e900;
+  background-color: var(--bg-primary);
+  border-bottom: 2px solid var(--accent);
   padding: 0;
   position: sticky;
   top: 0;
@@ -19,7 +19,7 @@
 }
 
 .nav-logo {
-  color: #b8e900;
+  color: var(--accent);
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
@@ -27,7 +27,7 @@
 }
 
 .nav-logo:hover {
-  color: #e6ff33;
+  color: var(--accent);
 }
 
 .nav-menu {
@@ -42,14 +42,14 @@
 }
 
 .nav-link {
-  color: #ffffff;
+  color: var(--text-primary);
   text-decoration: none;
   transition: color 0.3s;
   font-size: 1rem;
 }
 
 .nav-link:hover {
-  color: #b8e900;
+  color: var(--accent);
 }
 
 .nav-btn {
@@ -62,8 +62,8 @@
 }
 
 .register-btn {
-  background-color: #b8e900;
-  color: #1a1a1a;
+  background-color: var(--accent);
+  color: var(--text-on-accent);
   text-decoration: none;
   display: inline-block;
   font-weight: bold;
@@ -75,7 +75,7 @@
 
 .logout-btn {
   background-color: #666666;
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 .logout-btn:hover {
@@ -97,7 +97,7 @@
 }
 
 .admin-link {
-  color: #b8e900;
+  color: var(--accent);
   font-weight: 600;
   padding: 4px 8px;
   border-radius: 4px;
@@ -105,8 +105,25 @@
 }
 
 .admin-link:hover {
-  color: #e6ff33;
-  background-color: rgba(184, 233, 0, 0.1);
+  color: var(--accent);
+  background-color: rgba(56, 189, 248, 0.1);
+}
+
+.theme-toggle-btn {
+  padding: 7px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  background-color: var(--accent);
+  color: var(--text-on-accent);
 }
 
 @media (max-width: 768px) {

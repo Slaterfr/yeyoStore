@@ -7,7 +7,9 @@ const EditProduct = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const { getAuthHeaders } = useAuth()
-  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '')
+  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000')
+    .replace(/\/$/, '')
+    .replace(/\/api$/, '')
 
   const [producto, setProducto] = useState(null)
   const [loading, setLoading] = useState(true)

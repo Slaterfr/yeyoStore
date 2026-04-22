@@ -7,11 +7,11 @@
 }
 
 .auth-form {
-  background: #2a2a2a;
-  border: 1px solid #b8e900;
+  background: var(--surface);
+  border: 1px solid var(--accent);
   padding: 40px;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(184, 233, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(56, 189, 248, 0.1);
   width: 100%;
   max-width: 400px;
 }
@@ -19,7 +19,7 @@
 .auth-form h2 {
   margin-bottom: 30px;
   text-align: center;
-  color: #b8e900;
+  color: var(--accent);
 }
 
 .form-group {
@@ -29,7 +29,7 @@
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  color: #b8e900;
+  color: var(--accent);
   font-weight: 500;
 }
 
@@ -40,21 +40,21 @@
   border-radius: 4px;
   font-size: 1rem;
   transition: border-color 0.3s;
-  background-color: #1a1a1a;
-  color: #ffffff;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #b8e900;
-  box-shadow: 0 0 5px rgba(184, 233, 0, 0.3);
+  border-color: var(--accent);
+  box-shadow: 0 0 5px rgba(56, 189, 248, 0.3);
 }
 
 .submit-btn {
   width: 100%;
   padding: 10px;
-  background-color: #b8e900;
-  color: #1a1a1a;
+  background-color: var(--accent);
+  color: var(--text-on-accent);
   border: none;
   border-radius: 4px;
   font-size: 1rem;
@@ -83,9 +83,9 @@
 
 .success-message {
   background-color: #1a3d1a;
-  color: #b8e900;
+  color: var(--accent);
   padding: 10px;
   border-radius: 4px;
   margin-bottom: 20px;
-  border-left: 4px solid #b8e900;
+  border-left: 4px solid var(--accent);
 }

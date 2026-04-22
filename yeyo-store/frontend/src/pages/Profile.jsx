@@ -5,7 +5,9 @@ import './Profile.css'
 
 const Profile = () => {
   const { user, isAuthenticated, getAuthHeaders } = useAuth()
-  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '')
+  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000')
+    .replace(/\/$/, '')
+    .replace(/\/api$/, '')
   const [tab, setTab] = useState('datos')
   const [userData, setUserData] = useState(null)
   const [pedidos, setPedidos] = useState([])
@@ -166,7 +168,7 @@ const Profile = () => {
   const getStatusColor = (status) => {
     switch (status) {
       case 'entregado':
-        return '#b8e900'
+        return '#0ea5e9'
       case 'en_transito':
         return '#99ccff'
       case 'confirmado':
@@ -244,7 +246,7 @@ const Profile = () => {
                   </div>
                   <div className="data-item">
                     <label>Estado de cuenta:</label>
-                    <p className="status-badge" style={{ color: '#b8e900' }}>Activa</p>
+                    <p className="status-badge" style={{ color: '#0ea5e9' }}>Activa</p>
                   </div>
                 </div>
                 <button className="edit-btn" onClick={() => setIsEditing(true)}>

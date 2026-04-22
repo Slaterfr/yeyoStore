@@ -9,18 +9,18 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
-  border-bottom: 2px solid #b8e900;
+  border-bottom: 2px solid var(--accent);
   padding-bottom: 15px;
 }
 
 .inventario-header h1 {
-  color: #b8e900;
+  color: var(--accent);
   font-size: 2rem;
   margin: 0;
 }
 
 .total-productos {
-  color: #999;
+  color: var(--text-muted);
   font-size: 0.95rem;
   margin: 0;
 }
@@ -32,7 +32,7 @@
   margin-bottom: 25px;
   align-items: flex-end;
   flex-wrap: wrap;
-  background-color: #2a2a2a;
+  background-color: var(--surface);
   padding: 15px;
   border-radius: 8px;
 }
@@ -45,8 +45,8 @@
 .search-input {
   width: 100%;
   padding: 10px 15px;
-  background-color: #1a1a1a;
-  border: 1px solid #444;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border);
   border-radius: 4px;
   color: #fff;
   font-size: 0.95rem;
@@ -54,8 +54,8 @@
 
 .search-input:focus {
   outline: none;
-  border-color: #b8e900;
-  box-shadow: 0 0 4px rgba(184, 233, 0, 0.3);
+  border-color: var(--accent);
+  box-shadow: 0 0 4px rgba(56, 189, 248, 0.3);
 }
 
 .filtro-stock {
@@ -65,15 +65,15 @@
 }
 
 .filtro-stock label {
-  color: #999;
+  color: var(--text-muted);
   font-size: 0.85rem;
   font-weight: 500;
 }
 
 .input-small {
   padding: 8px 12px;
-  background-color: #1a1a1a;
-  border: 1px solid #444;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border);
   border-radius: 4px;
   color: #fff;
   font-size: 0.9rem;
@@ -82,7 +82,7 @@
 
 .input-small:focus {
   outline: none;
-  border-color: #b8e900;
+  border-color: var(--accent);
 }
 
 .btn-limpiar {
@@ -103,10 +103,10 @@
 
 /* Tabla */
 .inventario-tabla-wrapper {
-  background-color: #2a2a2a;
+  background-color: var(--surface);
   border-radius: 8px;
   overflow-x: auto;
-  border: 1px solid #444;
+  border: 1px solid var(--border);
 }
 
 .inventario-tabla {
@@ -116,20 +116,20 @@
 }
 
 .inventario-tabla thead {
-  background-color: #1a1a1a;
-  border-bottom: 2px solid #b8e900;
+  background-color: var(--bg-primary);
+  border-bottom: 2px solid var(--accent);
 }
 
 .inventario-tabla th {
   padding: 15px 12px;
   text-align: left;
-  color: #b8e900;
+  color: var(--accent);
   font-weight: 600;
   white-space: nowrap;
 }
 
 .inventario-tabla tbody tr {
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid var(--border);
   transition: background-color 0.2s;
 }
 
@@ -157,13 +157,13 @@
 }
 
 .id-cell {
-  color: #999;
+  color: var(--text-muted);
   font-size: 0.85rem;
   width: 50px;
 }
 
 .nombre-cell {
-  color: #b8e900;
+  color: var(--accent);
   font-weight: 500;
   min-width: 150px;
 }
@@ -225,9 +225,9 @@
 }
 
 .btn-editar:hover {
-  border-color: #b8e900;
-  background-color: rgba(184, 233, 0, 0.1);
-  color: #b8e900;
+  border-color: var(--accent);
+  background-color: rgba(56, 189, 248, 0.1);
+  color: var(--accent);
 }
 
 .btn-accion-peligro:hover {
@@ -239,16 +239,16 @@
 .empty-estado {
   padding: 40px 20px;
   text-align: center;
-  color: #999;
+  color: var(--text-muted);
 }
 
 .loading-message {
-  background-color: #2a2a2a;
-  border: 1px solid #b8e900;
+  background-color: var(--surface);
+  border: 1px solid var(--accent);
   padding: 30px;
   border-radius: 8px;
   text-align: center;
-  color: #b8e900;
+  color: var(--accent);
   font-size: 1rem;
 }
 
@@ -265,9 +265,9 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #2a2a2a;
-  border: 1px solid #b8e900;
-  color: #b8e900;
+  background-color: var(--surface);
+  border: 1px solid var(--accent);
+  color: var(--accent);
   padding: 15px 20px;
   border-radius: 8px;
   animation: slideIn 0.3s ease-in-out;

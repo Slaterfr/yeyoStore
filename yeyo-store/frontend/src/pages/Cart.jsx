@@ -7,7 +7,9 @@ import './Cart.css'
 const Cart = () => {
   const { getAuthHeaders, isAuthenticated, user, loading: authLoading } = useAuth()
   const { carrito, actualizarCantidad, eliminarDelCarrito, vaciarCarrito, calcularTotal } = useCart()
-  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '')
+  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000')
+    .replace(/\/$/, '')
+    .replace(/\/api$/, '')
   
   const [usuario, setUsuario] = useState(null)
   const [direcciones, setDirecciones] = useState([])

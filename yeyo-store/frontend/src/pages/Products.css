@@ -6,8 +6,8 @@
 
 .filters-sidebar {
   width: 300px;
-  background-color: #2a2a2a;
-  border: 1px solid #b8e900;
+  background-color: var(--surface);
+  border: 1px solid var(--accent);
   padding: 20px;
   border-radius: 8px;
   height: fit-content;
@@ -16,7 +16,7 @@
 }
 
 .filters-sidebar h3 {
-  color: #b8e900;
+  color: var(--accent);
   margin-bottom: 20px;
   font-size: 1.2rem;
 }
@@ -24,7 +24,7 @@
 .filter-group {
   margin-bottom: 25px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid var(--border);
 }
 
 .filter-group:last-child {
@@ -33,7 +33,7 @@
 
 .filter-group label {
   display: block;
-  color: #b8e900;
+  color: var(--accent);
   font-weight: bold;
   margin-bottom: 10px;
   text-transform: uppercase;
@@ -43,17 +43,17 @@
 .search-input {
   width: 100%;
   padding: 10px;
-  background-color: #1a1a1a;
-  border: 1px solid #444;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border);
   border-radius: 4px;
-  color: #ffffff;
+  color: var(--text-primary);
   font-size: 0.95rem;
 }
 
 .search-input:focus {
   outline: none;
-  border-color: #b8e900;
-  box-shadow: 0 0 5px rgba(184, 233, 0, 0.3);
+  border-color: var(--accent);
+  box-shadow: 0 0 5px rgba(56, 189, 248, 0.3);
 }
 
 .checkbox-label {
@@ -62,11 +62,11 @@
   gap: 8px;
   margin-bottom: 10px;
   cursor: pointer;
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 .checkbox-label input {
-  accent-color: #b8e900;
+  accent-color: var(--accent);
   cursor: pointer;
   width: 18px;
   height: 18px;
@@ -84,10 +84,10 @@
   min-width: 60px;
   max-width: 90px;
   padding: 8px 10px;
-  background-color: #1a1a1a;
-  border: 1px solid #444;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border);
   border-radius: 4px;
-  color: #ffffff;
+  color: var(--text-primary);
   font-size: 0.85rem;
   text-align: center;
   font-family: 'Courier New', monospace;
@@ -95,12 +95,12 @@
 
 .price-inputs input:focus {
   outline: none;
-  border-color: #b8e900;
-  box-shadow: 0 0 4px rgba(184, 233, 0, 0.3);
+  border-color: var(--accent);
+  box-shadow: 0 0 4px rgba(56, 189, 248, 0.3);
 }
 
 .price-inputs span {
-  color: #b8e900;
+  color: var(--accent);
   font-weight: bold;
   font-size: 1rem;
 }
@@ -113,45 +113,45 @@
 
 .talla-btn {
   padding: 8px;
-  background-color: #1a1a1a;
-  border: 1px solid #444;
-  color: #ffffff;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s;
 }
 
 .talla-btn:hover {
-  border-color: #b8e900;
+  border-color: var(--accent);
 }
 
 .talla-btn.active {
-  background-color: #b8e900;
-  color: #1a1a1a;
-  border-color: #b8e900;
+  background-color: var(--accent);
+  color: var(--text-on-accent);
+  border-color: var(--accent);
 }
 
 .filter-group select {
   width: 100%;
   padding: 10px;
-  background-color: #1a1a1a;
-  border: 1px solid #444;
-  color: #ffffff;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
   border-radius: 4px;
   cursor: pointer;
 }
 
 .filter-group select:focus {
   outline: none;
-  border-color: #b8e900;
+  border-color: var(--accent);
 }
 
 .clear-filters-btn {
   width: 100%;
   padding: 10px;
   background-color: transparent;
-  border: 1px solid #b8e900;
-  color: #b8e900;
+  border: 1px solid var(--accent);
+  color: var(--accent);
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s;
@@ -159,8 +159,8 @@
 }
 
 .clear-filters-btn:hover {
-  background-color: #b8e900;
-  color: #1a1a1a;
+  background-color: var(--accent);
+  color: var(--text-on-accent);
 }
 
 .products-content {
@@ -176,22 +176,22 @@
 .main-search {
   flex: 1;
   padding: 12px;
-  background-color: #2a2a2a;
-  border: 1px solid #444;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 4px;
-  color: #ffffff;
+  color: var(--text-primary);
   font-size: 1rem;
 }
 
 .main-search:focus {
   outline: none;
-  border-color: #b8e900;
+  border-color: var(--accent);
 }
 
 .search-btn {
   padding: 12px 30px;
-  background-color: #b8e900;
-  color: #1a1a1a;
+  background-color: var(--accent);
+  color: var(--text-on-accent);
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -213,14 +213,14 @@
 }
 
 .results-count {
-  color: #b8e900;
+  color: var(--accent);
   margin-bottom: 20px;
   font-weight: bold;
 }
 
 .loading {
   text-align: center;
-  color: #b8e900;
+  color: var(--accent);
   padding: 40px;
   font-size: 1.1rem;
 }
@@ -232,8 +232,8 @@
 }
 
 .product-card {
-  background-color: #2a2a2a;
-  border: 1px solid #b8e900;
+  background-color: var(--surface);
+  border: 1px solid var(--accent);
   border-radius: 8px;
   overflow: hidden;
   transition: all 0.3s;
@@ -241,13 +241,13 @@
 
 .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 20px rgba(184, 233, 0, 0.2);
+  box-shadow: 0 5px 20px rgba(56, 189, 248, 0.2);
 }
 
 .product-image {
   width: 100%;
   height: 250px;
-  background-color: #1a1a1a;
+  background-color: var(--bg-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -265,20 +265,20 @@
 }
 
 .product-info h4 {
-  color: #b8e900;
+  color: var(--accent);
   margin-bottom: 8px;
   font-size: 1.1rem;
 }
 
 .product-info .category {
-  color: #999;
+  color: var(--text-muted);
   font-size: 0.85rem;
   margin-bottom: 10px;
   text-transform: uppercase;
 }
 
 .product-info .price {
-  color: #b8e900;
+  color: var(--accent);
   font-size: 1.3rem;
   font-weight: bold;
   margin-bottom: 12px;
@@ -296,7 +296,7 @@
 
 .talla-selector label {
   display: block;
-  color: #b8e900;
+  color: var(--accent);
   font-size: 0.85rem;
   margin-bottom: 5px;
   font-weight: bold;
@@ -305,9 +305,9 @@
 .talla-select {
   width: 100%;
   padding: 8px;
-  background-color: #1a1a1a;
-  border: 1px solid #b8e900;
-  color: #ffffff;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--accent);
+  color: var(--text-primary);
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
@@ -317,14 +317,14 @@
 .talla-select:focus {
   outline: none;
   border-color: #e6ff33;
-  box-shadow: 0 0 5px rgba(184, 233, 0, 0.3);
+  box-shadow: 0 0 5px rgba(56, 189, 248, 0.3);
 }
 
 .add-to-cart-btn {
   width: 100%;
   padding: 10px;
-  background-color: #b8e900;
-  color: #1a1a1a;
+  background-color: var(--accent);
+  color: var(--text-on-accent);
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -346,8 +346,8 @@
   flex: 0 0 50px;
   padding: 10px;
   background-color: transparent;
-  border: 2px solid #b8e900;
-  color: #b8e900;
+  border: 2px solid var(--accent);
+  color: var(--accent);
   border-radius: 4px;
   cursor: pointer;
   font-size: 1.2rem;
@@ -359,21 +359,21 @@
 
 .wishlist-btn:hover {
   border-color: #e6ff33;
-  background-color: rgba(184, 233, 0, 0.1);
+  background-color: rgba(56, 189, 248, 0.1);
 }
 
 .wishlist-btn.active {
-  background-color: #b8e900;
-  border-color: #b8e900;
+  background-color: var(--accent);
+  border-color: var(--accent);
 }
 
 .toast-notification {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #2a2a2a;
-  border: 2px solid #b8e900;
-  color: #b8e900;
+  background-color: var(--surface);
+  border: 2px solid var(--accent);
+  color: var(--accent);
   padding: 15px 20px;
   border-radius: 4px;
   z-index: 1000;

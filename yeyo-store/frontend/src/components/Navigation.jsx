@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import './Navigation.css'
 
-const Navigation = () => {
+const Navigation = ({ theme, onToggleTheme }) => {
   const { user, logout, isAuthenticated, isAdmin } = useAuth()
   const navigate = useNavigate()
 
@@ -33,6 +33,17 @@ const Navigation = () => {
             <Link to="/carrito" className="nav-link">
               Carrito
             </Link>
+          </li>
+
+          <li className="nav-item">
+            <button
+              className="theme-toggle-btn"
+              onClick={onToggleTheme}
+              aria-label="Cambiar tema"
+              title={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+            >
+              {theme === 'dark' ? 'Claro' : 'Oscuro'}
+            </button>
           </li>
 
           {isAdmin && (

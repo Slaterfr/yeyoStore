@@ -5,21 +5,21 @@
 }
 
 .wishlist-container h1 {
-  color: #b8e900;
+  color: var(--accent);
   margin-bottom: 25px;
   font-size: 2rem;
 }
 
 .empty-wishlist {
-  background-color: #2a2a2a;
-  border: 1px solid #b8e900;
+  background-color: var(--surface);
+  border: 1px solid var(--accent);
   padding: 60px 20px;
   border-radius: 8px;
   text-align: center;
 }
 
 .empty-wishlist p {
-  color: #999;
+  color: var(--text-muted);
   font-size: 1.1rem;
   margin-bottom: 20px;
 }
@@ -27,8 +27,8 @@
 .btn-continue {
   display: inline-block;
   padding: 12px 30px;
-  background-color: #b8e900;
-  color: #1a1a1a;
+  background-color: var(--accent);
+  color: var(--text-on-accent);
   text-decoration: none;
   border-radius: 4px;
   font-weight: bold;
@@ -45,13 +45,13 @@
   align-items: center;
   margin-bottom: 25px;
   padding: 15px;
-  background-color: #2a2a2a;
-  border: 1px solid #444;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
 }
 
 .items-count {
-  color: #b8e900;
+  color: var(--accent);
   font-weight: bold;
   font-size: 1.05rem;
 }
@@ -69,7 +69,7 @@
 
 .btn-clear-all:hover {
   background-color: #ff6b6b;
-  color: #1a1a1a;
+  color: var(--text-on-accent);
 }
 
 .wishlist-grid {
@@ -79,8 +79,8 @@
 }
 
 .wishlist-card {
-  background-color: #2a2a2a;
-  border: 1px solid #b8e900;
+  background-color: var(--surface);
+  border: 1px solid var(--accent);
   border-radius: 8px;
   overflow: hidden;
   transition: all 0.3s;
@@ -90,13 +90,13 @@
 
 .wishlist-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 20px rgba(184, 233, 0, 0.2);
+  box-shadow: 0 5px 20px rgba(56, 189, 248, 0.2);
 }
 
 .card-image {
   width: 100%;
   height: 250px;
-  background-color: #1a1a1a;
+  background-color: var(--bg-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,13 +117,13 @@
 }
 
 .card-content h3 {
-  color: #b8e900;
+  color: var(--accent);
   margin-bottom: 5px;
   font-size: 1rem;
 }
 
 .card-content .marca {
-  color: #999;
+  color: var(--text-muted);
   font-size: 0.85rem;
   margin-bottom: 5px;
 }
@@ -136,7 +136,7 @@
 }
 
 .card-content .precio {
-  color: #b8e900;
+  color: var(--accent);
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 12px;
@@ -148,7 +148,7 @@
 
 .card-content .talla-selector label {
   display: block;
-  color: #b8e900;
+  color: var(--accent);
   font-size: 0.85rem;
   margin-bottom: 5px;
   font-weight: bold;
@@ -157,9 +157,9 @@
 .talla-select {
   width: 100%;
   padding: 8px;
-  background-color: #1a1a1a;
-  border: 1px solid #b8e900;
-  color: #ffffff;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--accent);
+  color: var(--text-primary);
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
@@ -168,7 +168,7 @@
 .talla-select:focus {
   outline: none;
   border-color: #e6ff33;
-  box-shadow: 0 0 5px rgba(184, 233, 0, 0.3);
+  box-shadow: 0 0 5px rgba(56, 189, 248, 0.3);
 }
 
 .card-buttons {
@@ -180,8 +180,8 @@
 .btn-add-cart {
   flex: 1;
   padding: 10px;
-  background-color: #b8e900;
-  color: #1a1a1a;
+  background-color: var(--accent);
+  color: var(--text-on-accent);
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -209,16 +209,16 @@
 
 .btn-remove:hover {
   background-color: #ff6b6b;
-  color: #1a1a1a;
+  color: var(--text-on-accent);
 }
 
 .toast-notification {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #2a2a2a;
-  border: 2px solid #b8e900;
-  color: #b8e900;
+  background-color: var(--surface);
+  border: 2px solid var(--accent);
+  color: var(--accent);
   padding: 15px 20px;
   border-radius: 4px;
   z-index: 1000;

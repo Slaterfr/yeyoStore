@@ -6,7 +6,9 @@ import './OrderDetail.css'
 const OrderDetail = () => {
   const { id } = useParams()
   const { getAuthHeaders, isAuthenticated } = useAuth()
-  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '')
+  const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000')
+    .replace(/\/$/, '')
+    .replace(/\/api$/, '')
   const [pedido, setPedido] = useState(null)
   const [direccion, setDireccion] = useState(null)
   const [productoImages, setProductoImages] = useState({})

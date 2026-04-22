@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { AuthProvider } from './context/AuthContext'
 import { CartProvider } from './context/CartContext'
 import { WishlistProvider } from './context/WishlistContext'
@@ -18,12 +19,34 @@ import EditProduct from './pages/admin/EditProduct'
 import './App.css'
 
 function App() {
+  const [theme, setTheme] = useState('light')
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      setTheme(savedTheme)
+      return
+    }
+
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    setTheme(prefersDark ? 'dark' : 'light')
+  }, [])
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('theme', theme)
+  }, [theme])
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
+  }
+
   return (
     <AuthProvider>
       <CartProvider>
         <WishlistProvider>
           <Router>
-            <Navigation />
+            <Navigation theme={theme} onToggleTheme={toggleTheme} />
             <main className="main-content">
               <Routes>
                 <Route path="/" element={<Home />} />

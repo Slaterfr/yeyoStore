@@ -1,0 +1,182 @@
+NOMBRE DEL SISTEMA
+YeYo Store
+
+MANUAL DE USO PARA USUARIO FINAL
+Version: 1.0
+
+OBJETIVO
+Este manual explica como usar el sistema YeYo Store para los dos roles disponibles:
+1. Cliente
+2. Administrador
+
+ALCANCE
+El manual cubre:
+- Registro e inicio de sesion
+- Navegacion del catalogo
+- Carrito y proceso de compra
+- Historial y detalle de pedidos
+- Funciones administrativas de inventario y edicion de productos
+
+REQUISITOS MINIMOS
+- Navegador web actualizado (Chrome, Edge, Firefox)
+- Conexion a internet
+- Credenciales de usuario registradas
+
+--------------------------------------------------
+SECCION A - MANUAL PARA ROL CLIENTE
+--------------------------------------------------
+
+1. ACCESO AL SISTEMA
+1. Ingrese a la URL del sistema.
+2. En el menu superior seleccione Iniciar sesion.
+3. Escriba su correo y contrasena.
+4. Presione el boton de acceso.
+
+[IMAGEN SUGERIDA A1: Pantalla de Login con campos de correo y contrasena]
+
+2. REGISTRO DE NUEVO USUARIO
+1. En la pantalla de login, seleccione Registrarse.
+2. Complete nombre, correo y contrasena.
+3. Confirme el registro.
+4. Inicie sesion con sus nuevas credenciales.
+
+[IMAGEN SUGERIDA A2: Pantalla de Registro con formulario completo]
+
+3. NAVEGACION DEL CATALOGO
+1. Ingrese a la seccion Productos.
+2. Revise tarjetas de productos con nombre, imagen y precio.
+3. Use filtros para buscar por nombre, categoria, talla o rango de precio.
+4. Seleccione una talla disponible antes de agregar al carrito.
+
+[IMAGEN SUGERIDA A3: Catalogo de productos con filtros visibles]
+
+4. LISTA DE DESEOS (WISHLIST)
+1. Desde el catalogo, pulse el icono de favorito para guardar un producto.
+2. Ingrese a la seccion Wishlist para ver sus productos guardados.
+3. Desde Wishlist puede eliminar productos o moverlos al carrito.
+
+[IMAGEN SUGERIDA A4: Vista de Wishlist con productos guardados]
+
+5. AGREGAR PRODUCTOS AL CARRITO
+1. En Productos, seleccione talla.
+2. Presione Agregar al carrito.
+3. Abra la seccion Carrito para revisar articulos.
+4. Ajuste cantidades o elimine productos segun sea necesario.
+
+[IMAGEN SUGERIDA A5: Pantalla de Carrito con control de cantidad]
+
+6. PROCESAR COMPRA
+1. En Carrito, confirme productos y cantidades.
+2. Seleccione direccion de envio.
+3. Ingrese codigo de cupon si aplica.
+4. Presione Procesar compra.
+5. Espere el mensaje de orden creada correctamente.
+
+[IMAGEN SUGERIDA A6: Resumen de compra y boton Procesar compra]
+
+7. HISTORIAL DE PEDIDOS
+1. Ingrese a Mi cuenta.
+2. Abra la opcion Historial de pedidos.
+3. Revise sus ordenes recientes y estados.
+4. Presione Ver detalle para abrir el tracking de una orden.
+
+[IMAGEN SUGERIDA A7: Seccion Historial de pedidos]
+
+8. DETALLE Y SEGUIMIENTO DE ORDEN
+1. Desde Historial de pedidos, abra una orden.
+2. Revise:
+   - Numero de orden
+   - Estado actual
+   - Timeline de seguimiento
+   - Resumen del pedido
+   - Direccion de entrega
+
+[IMAGEN SUGERIDA A8: Pantalla de tracking de orden]
+
+9. GESTION DE PERFIL Y DIRECCIONES
+1. En Mi cuenta, seleccione Mis datos para revisar su informacion.
+2. Seleccione Direcciones para agregar o eliminar direcciones.
+3. Guarde cambios cuando termine.
+
+[IMAGEN SUGERIDA A9: Pantalla de perfil con menu lateral]
+
+--------------------------------------------------
+SECCION B - MANUAL PARA ROL ADMINISTRADOR
+--------------------------------------------------
+
+1. ACCESO COMO ADMINISTRADOR
+1. Inicie sesion con una cuenta de rol admin.
+2. Verifique que en el menu aparezca la opcion Inventario.
+
+[IMAGEN SUGERIDA B1: Menu de navegacion mostrando opcion Inventario]
+
+2. PANTALLA DE INVENTARIO
+1. Abra Inventario desde el menu.
+2. Revise la tabla de productos.
+3. Use buscador por nombre o marca.
+4. Use filtros de stock minimo y maximo.
+
+[IMAGEN SUGERIDA B2: Pantalla de Inventario con tabla y filtros]
+
+3. EDITAR PRODUCTO
+1. En Inventario, ubique el producto a modificar.
+2. Presione el boton Editar.
+3. Actualice campos requeridos:
+   - Nombre
+   - Descripcion
+   - Precio
+   - Stock
+   - Categoria
+   - Marca
+4. Presione Guardar cambios.
+5. Verifique mensaje de confirmacion.
+
+[IMAGEN SUGERIDA B3: Formulario de edicion de producto]
+
+4. AJUSTE RAPIDO DE STOCK
+1. En Inventario, use la accion rapida para ajustar stock.
+2. Confirme la accion.
+3. Verifique que el stock en tabla se actualice.
+
+[IMAGEN SUGERIDA B4: Acciones rapidas en fila de inventario]
+
+5. CONTROL DE ACCESO
+1. Las rutas administrativas solo deben ser accesibles por rol admin.
+2. Si un cliente intenta entrar, el sistema muestra acceso no autorizado.
+
+[IMAGEN SUGERIDA B5: Mensaje de ruta protegida / acceso no autorizado]
+
+--------------------------------------------------
+SECCION C - MENSAJES Y SOLUCION BASICA DE PROBLEMAS
+--------------------------------------------------
+
+1. ERROR DE INICIO DE SESION
+- Verifique correo y contrasena.
+- Confirme que la cuenta exista.
+- Intente nuevamente.
+
+2. ERROR 401 O 403
+- Cierre sesion y vuelva a iniciar.
+- Verifique permisos de rol.
+
+3. CARRITO NO PROCESA COMPRA
+- Confirme que exista una direccion seleccionada.
+- Verifique que el carrito tenga productos.
+- Revise conexion a internet.
+
+4. PRODUCTO SIN IMAGEN
+- Recargue la pagina.
+- Si persiste, validar configuracion de imagen en backend.
+
+--------------------------------------------------
+SECCION D - BUENAS PRACTICAS DE USO
+--------------------------------------------------
+
+- Mantener actualizadas las direcciones de envio.
+- Confirmar talla antes de agregar al carrito.
+- Revisar resumen de compra antes de procesar.
+- En admin, validar stock y precio antes de guardar cambios.
+
+--------------------------------------------------
+FIN DEL MANUAL
+--------------------------------------------------

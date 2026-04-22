@@ -5,17 +5,17 @@
 }
 
 .protected-route-loading {
-  background-color: #2a2a2a;
-  border: 1px solid #b8e900;
+  background-color: var(--surface);
+  border: 1px solid var(--accent);
   padding: 40px;
   border-radius: 8px;
   text-align: center;
-  color: #b8e900;
+  color: var(--accent);
   font-size: 1.1rem;
 }
 
 .error-box {
-  background-color: #2a2a2a;
+  background-color: var(--surface);
   border: 2px solid #ff6666;
   padding: 40px;
   border-radius: 8px;
@@ -35,14 +35,14 @@
 }
 
 .error-box strong {
-  color: #b8e900;
+  color: var(--accent);
 }
 
 .btn-primary {
   margin-top: 20px;
   padding: 12px 30px;
-  background-color: #b8e900;
-  color: #1a1a1a;
+  background-color: var(--accent);
+  color: var(--text-on-accent);
   border: none;
   border-radius: 4px;
   font-weight: 600;
@@ -53,5 +53,5 @@
 
 .btn-primary:hover {
   background-color: #e6ff33;
-  box-shadow: 0 0 15px rgba(184, 233, 0, 0.4);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
 }
