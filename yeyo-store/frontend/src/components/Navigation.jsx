@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import logoYeyoStore from '../static/logo_yeyostore.png'
 import './Navigation.css'
 
 const Navigation = ({ theme, onToggleTheme }) => {
@@ -15,7 +16,7 @@ const Navigation = ({ theme, onToggleTheme }) => {
     <nav className="navbar">
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          YeYo Store
+          <img src={logoYeyoStore} alt="YeYo Store" className="nav-logo-img" />
         </Link>
 
         <ul className="nav-menu">

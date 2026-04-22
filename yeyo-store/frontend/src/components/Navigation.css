@@ -19,15 +19,24 @@
 }
 
 .nav-logo {
-  color: var(--accent);
-  font-size: 1.5rem;
-  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: transform 0.2s ease;
 }
 
 .nav-logo:hover {
-  color: var(--accent);
+  transform: scale(1.03);
+}
+
+.nav-logo-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent);
+  background-color: var(--surface);
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.15);
 }
 
 .nav-menu {
@@ -129,6 +138,11 @@
 @media (max-width: 768px) {
   .nav-menu {
     gap: 15px;
+  }
+
+  .nav-logo-img {
+    width: 36px;
+    height: 36px;
   }
 
   .nav-link,
