@@ -1,0 +1,99 @@
+.payment-confirmation-container {
+  max-width: 860px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.payment-confirmation-card {
+  background-color: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.15);
+}
+
+.confirmation-icon {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background-color: var(--bg-primary);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.payment-confirmation-card h1 {
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.confirmation-subtitle {
+  color: var(--text-muted);
+  margin-bottom: 22px;
+}
+
+.confirmation-summary {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.summary-row:last-child {
+  border-bottom: none;
+}
+
+.status-row strong {
+  color: var(--accent);
+}
+
+.confirmation-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 11px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: var(--text-on-accent);
+}
+
+.btn-primary:hover {
+  filter: brightness(0.95);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(56, 189, 248, 0.12);
+}

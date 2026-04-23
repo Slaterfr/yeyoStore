@@ -8,8 +8,8 @@
   --bg-primary: #f3f8ff;
   --surface: #ffffff;
   --accent: #0ea5e9;
-  --text-primary: #0f172a;
-  --text-muted: #64748b;
+  --text-primary: #000000;
+  --text-muted: #111827;
   --border: #cbd5e1;
   --text-on-accent: #ffffff;
 }
@@ -32,6 +32,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-primary);
   color: var(--text-primary);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
 }
 
 code {

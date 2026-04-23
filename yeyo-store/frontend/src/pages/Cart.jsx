@@ -1,23 +1,120 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useCart } from '../context/CartContext'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Cart.css'
 
 const Cart = () => {
   const { getAuthHeaders, isAuthenticated, user, loading: authLoading } = useAuth()
   const { carrito, actualizarCantidad, eliminarDelCarrito, vaciarCarrito, calcularTotal } = useCart()
+  const navigate = useNavigate()
   const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000')
     .replace(/\/$/, '')
     .replace(/\/api$/, '')
+  const PAYMENT_STORAGE_KEY = 'yeyo_payment_methods'
   
   const [usuario, setUsuario] = useState(null)
   const [direcciones, setDirecciones] = useState([])
   const [ordenes, setOrdenes] = useState([])
+  const [paymentMethods, setPaymentMethods] = useState([])
+  const [selectedPaymentMethodId, setSelectedPaymentMethodId] = useState('')
+  const [showAddPaymentForm, setShowAddPaymentForm] = useState(false)
+  const [paymentForm, setPaymentForm] = useState({
+    titular: '',
+    numero: '',
+    mesExp: '',
+    anioExp: ''
+  })
   const [direccionSeleccionada, setDireccionSeleccionada] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [codigoCupon, setCodigoCupon] = useState('')
+
+  const getCardBrand = (numero) => {
+    if (!numero) return 'Tarjeta'
+    if (numero.startsWith('4')) return 'Visa'
+    if (/^5[1-5]/.test(numero)) return 'Mastercard'
+    if (/^3[47]/.test(numero)) return 'Amex'
+    return 'Tarjeta'
+  }
+
+  const formatMaskedCard = (numero) => {
+    const clean = numero.replace(/\D/g, '')
+    const last4 = clean.slice(-4)
+    return `**** **** **** ${last4}`
+  }
+
+  const loadPaymentMethods = () => {
+    const raw = localStorage.getItem(PAYMENT_STORAGE_KEY)
+    if (!raw) {
+      setPaymentMethods([])
+      return
+    }
+    try {
+      const parsed = JSON.parse(raw)
+      if (Array.isArray(parsed)) {
+        setPaymentMethods(parsed)
+        if (parsed.length > 0 && !selectedPaymentMethodId) {
+          setSelectedPaymentMethodId(String(parsed[0].id))
+        }
+      }
+    } catch {
+      setPaymentMethods([])
+    }
+  }
+
+  const savePaymentMethods = (methods) => {
+    setPaymentMethods(methods)
+    localStorage.setItem(PAYMENT_STORAGE_KEY, JSON.stringify(methods))
+  }
+
+  const handleAddPaymentMethod = () => {
+    const cleanNumber = paymentForm.numero.replace(/\D/g, '')
+    const mes = parseInt(paymentForm.mesExp, 10)
+    const anio = parseInt(paymentForm.anioExp, 10)
+
+    if (!paymentForm.titular.trim()) {
+      setError('Ingresa el nombre del titular')
+      return
+    }
+
+    if (cleanNumber.length < 13 || cleanNumber.length > 19) {
+      setError('Ingresa un numero de tarjeta valido')
+      return
+    }
+
+    if (!mes || mes < 1 || mes > 12) {
+      setError('Mes de expiracion invalido')
+      return
+    }
+
+    if (!anio || anio < new Date().getFullYear()) {
+      setError('Anio de expiracion invalido')
+      return
+    }
+
+    const newMethod = {
+      id: Date.now(),
+      titular: paymentForm.titular.trim(),
+      marca: getCardBrand(cleanNumber),
+      maskedNumber: formatMaskedCard(cleanNumber),
+      mesExp: mes,
+      anioExp: anio
+    }
+
+    const updated = [newMethod, ...paymentMethods]
+    savePaymentMethods(updated)
+    setSelectedPaymentMethodId(String(newMethod.id))
+    setPaymentForm({ titular: '', numero: '', mesExp: '', anioExp: '' })
+    setShowAddPaymentForm(false)
+    setError('')
+  }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      loadPaymentMethods()
+    }
+  }, [isAuthenticated])
 
   // Cargar información del usuario
   useEffect(() => {
@@ -84,6 +181,11 @@ const Cart = () => {
       return
     }
 
+    if (!selectedPaymentMethodId) {
+      setError('Selecciona un metodo de pago para continuar')
+      return
+    }
+
     try {
       // Primero, obtener todas las tallas del servidor
       const resTallas = await fetch(`${API_BASE}/api/tallas`, {
@@ -135,11 +237,21 @@ const Cart = () => {
 
       const nuevaOrden = await response.json()
       setOrdenes([nuevaOrden, ...ordenes])
+
+      const metodoPago = paymentMethods.find((m) => String(m.id) === String(selectedPaymentMethodId))
+
       vaciarCarrito()
       setError('')
       setDireccionSeleccionada('')
       setCodigoCupon('')
-      alert(`✅ Orden #${nuevaOrden.id_pedido} creada exitosamente`)
+      navigate(`/pago/confirmacion/${nuevaOrden.id_pedido}`, {
+        state: {
+          pago: {
+            metodo: metodoPago ? `${metodoPago.marca} ${metodoPago.maskedNumber}` : 'Tarjeta registrada',
+            total
+          }
+        }
+      })
     } catch (err) {
       setError(err.message)
     }
@@ -265,6 +377,78 @@ const Cart = () => {
                     </option>
                   ))}
                 </select>
+              )}
+            </div>
+
+            {/* Metodo de pago */}
+            <div className="payment-methods-section">
+              <h3>Metodo de pago</h3>
+
+              {paymentMethods.length === 0 ? (
+                <p className="no-payment-methods">No tienes metodos de pago guardados.</p>
+              ) : (
+                <select
+                  value={selectedPaymentMethodId}
+                  onChange={(e) => setSelectedPaymentMethodId(e.target.value)}
+                  className="payment-method-select"
+                >
+                  <option value="">Selecciona un metodo</option>
+                  {paymentMethods.map((method) => (
+                    <option key={method.id} value={method.id}>
+                      {method.marca} {method.maskedNumber} - Exp {String(method.mesExp).padStart(2, '0')}/{method.anioExp}
+                    </option>
+                  ))}
+                </select>
+              )}
+
+              <button
+                type="button"
+                className="btn-add-payment"
+                onClick={() => setShowAddPaymentForm((prev) => !prev)}
+              >
+                {showAddPaymentForm ? 'Cancelar' : 'Agregar tarjeta'}
+              </button>
+
+              {showAddPaymentForm && (
+                <div className="payment-form">
+                  <input
+                    type="text"
+                    placeholder="Titular"
+                    value={paymentForm.titular}
+                    onChange={(e) => setPaymentForm((prev) => ({ ...prev, titular: e.target.value }))}
+                    className="input-payment"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Numero de tarjeta"
+                    value={paymentForm.numero}
+                    onChange={(e) => setPaymentForm((prev) => ({ ...prev, numero: e.target.value }))}
+                    className="input-payment"
+                  />
+                  <div className="payment-exp-grid">
+                    <input
+                      type="number"
+                      placeholder="MM"
+                      min="1"
+                      max="12"
+                      value={paymentForm.mesExp}
+                      onChange={(e) => setPaymentForm((prev) => ({ ...prev, mesExp: e.target.value }))}
+                      className="input-payment"
+                    />
+                    <input
+                      type="number"
+                      placeholder="AAAA"
+                      min={new Date().getFullYear()}
+                      value={paymentForm.anioExp}
+                      onChange={(e) => setPaymentForm((prev) => ({ ...prev, anioExp: e.target.value }))}
+                      className="input-payment"
+                    />
+                  </div>
+                  <button type="button" className="btn-save-payment" onClick={handleAddPaymentMethod}>
+                    Guardar tarjeta
+                  </button>
+                  <p className="payment-note">Solo se guarda informacion enmascarada (no CVV).</p>
+                </div>
               )}
             </div>
 

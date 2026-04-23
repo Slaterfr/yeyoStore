@@ -14,6 +14,7 @@ import Wishlist from './pages/Wishlist'
 import Cart from './pages/Cart'
 import Profile from './pages/Profile'
 import OrderDetail from './pages/OrderDetail'
+import PaymentConfirmation from './pages/PaymentConfirmation'
 import Inventario from './pages/admin/Inventario'
 import EditProduct from './pages/admin/EditProduct'
 import './App.css'
@@ -58,6 +59,7 @@ function App() {
                 <Route path="/carrito" element={<Cart />} />
                 <Route path="/perfil" element={<Profile />} />
                 <Route path="/orden/:id" element={<OrderDetail />} />
+                <Route path="/pago/confirmacion/:orderId" element={<PaymentConfirmation />} />
                 
                 {/* Admin Routes */}
                 <Route 
